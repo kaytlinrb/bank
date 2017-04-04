@@ -1,11 +1,13 @@
 //Buisness logic
-function Account (firstName, initDeposit) {
+function Account (firstName, initDeposit, newDeposit, newWithdrawal) {
   this.firstName = firstName;
   this.initDeposit = initDeposit;
+  this.newDeposit = newDeposit;
+  this.newWithdrawal = newWithdrawal;
 }
 
-Account.prototype.depositAdd = function(){
-  initDeposit + depositInput
+Account.prototype.operations = function(){
+  return this.initDeposit + this.newDeposit - this.newWithdrawal;
 }
 
 
@@ -16,25 +18,13 @@ $(function() {
 
     var nameInput = $("#first-name").val();
     var initDeposit = parseInt($("#init-deposit").val());
+    var newDeposit = parseInt($("#deposit").val());
+    var newWithdrawal = parseInt($("#withdrawal").val());
+    newAccount = new Account(nameInput, initDeposit, newDeposit, newWithdrawal);
 
-    newAccount = new Account(nameInput, initDeposit);
+    var accountTotal = newAccount.operations();
+    $("h2").text("$" + accountTotal);
 
-    console.log(newAccount);
   });
-
-  $("#operations").submit(function(event) {
-    event.preventDefault();
-
-    var depositInput = parseInt($("#deposit").val());
-    var withdrawalInput = parseInt($("#withdrawal").val());
-
-
-
-    console.log(depositInput, withdrawalInput);
-  });
-
-
-
-
 
 });
